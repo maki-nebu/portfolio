@@ -1,0 +1,55 @@
+import React from "react";
+import { motion } from "framer-motion";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
+
+const projects = [
+  { title: "E-Commerce Platform", description: "A full-stack web app for online shopping.", link: "#" },
+  { title: "Hospital Management System", description: "A system for managing hospital records.", link: "#" },
+  { title: "Quiz System", description: "An online quiz system with multiple question types.", link: "#" },
+];
+
+export default function Portfolio() {
+  return (
+    <div className="bg-gray-900 text-white min-h-screen p-6">
+      <header className="text-center py-10">
+        <motion.h1
+          className="text-4xl font-bold text-blue-400"
+          initial={{ opacity: 0, y: -50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          Makda Nebyu
+        </motion.h1>
+        <p className="text-gray-400 mt-2">Software Engineer | Model</p>
+        <div className="flex justify-center gap-4 mt-4">
+          <FaGithub className="text-2xl cursor-pointer hover:text-blue-300" />
+          <FaLinkedin className="text-2xl cursor-pointer hover:text-blue-300" />
+          <FaEnvelope className="text-2xl cursor-pointer hover:text-blue-300" />
+        </div>
+      </header>
+
+      <section className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
+        {projects.map((project, index) => (
+          <motion.div
+            key={index}
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5, delay: index * 0.2 }}
+          >
+            <Card className="bg-gray-800 p-4 rounded-lg shadow-lg">
+              <CardContent>
+                <h2 className="text-xl font-semibold text-blue-300">{project.title}</h2>
+                <p className="text-gray-400 mt-2">{project.description}</p>
+                <Button className="mt-4 bg-blue-500 text-white" onClick={() => window.open(project.link, "_blank")}>
+                  View Project
+                </Button>
+              </CardContent>
+            </Card>
+          </motion.div>
+        ))}
+      </section>
+    </div>
+  );
+}
